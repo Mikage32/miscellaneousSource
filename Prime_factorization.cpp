@@ -40,7 +40,7 @@ int main(){
 
     long long number;
     std::cin >> number;
-    std::vector primeFactors = primeFactorization(number);
+    std::vector<primeFactor> primeFactors = primeFactorization(number);
 
     std::cout << number << " = ";
     for(int i = 0; i < primeFactors.size()-1; ++i){
