@@ -1,3 +1,8 @@
+/*
+written by Mikage32
+This is a program that uses the "findDivisor" function to calculate and return divisors after factoring the number (long long) received as an argument.
+*/
+
 #include <iostream>
 #include <vector>
 #include <algorithm>
