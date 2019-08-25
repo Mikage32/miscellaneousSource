@@ -12,10 +12,9 @@ struct primeFactor{
     long long power;
 };
 
-std::vector<long long> findDivisor(long long number){
+std::vector<primeFactor> primeFactorization(long long number){
     std::vector<primeFactor> primeFactors;
     long long quotient = number;
-    int numOfdivisor = 1;
     for(long long i = 2; i*i <= quotient; ++i){
         if(quotient%i == 0){
             primeFactor pf;
@@ -28,8 +27,6 @@ std::vector<long long> findDivisor(long long number){
                 quotient /= i;
             }
 
-            numOfdivisor *= (pf.power + 1);
-
             primeFactors.push_back(pf);
         }
     }
@@ -38,12 +35,24 @@ std::vector<long long> findDivisor(long long number){
         pf.prime = quotient;
         pf.power = 1;
         primeFactors.push_back(pf);
-
-        numOfdivisor *= 2;
     }
 
+    return primeFactors;
+}
 
-    std::vector<long long> divisor(numOfdivisor);
+int countDivisor(std::vector<primeFactor> primeFactors){
+    int counter = 1;
+    for(int i = 0; i < primeFactors.size(); ++i){
+        counter *= (primeFactors[i].power + 1);
+    }
+
+    return counter;
+}
+
+std::vector<long long> findDivisor(long long number){
+    std::vector<primeFactor> primeFactors = primeFactorization(number);
+
+    std::vector<long long> divisor(countDivisor(primeFactors));
     divisor[0] = 1;
 
     int counter = 1;
