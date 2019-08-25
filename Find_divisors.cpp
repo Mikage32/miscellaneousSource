@@ -7,19 +7,16 @@ This is a program that uses the "findDivisor" function to calculate and return d
 #include <vector>
 #include <algorithm>
 
-#define ll long long
-#define ull unsigned long long
-
 struct primeFactor{
-    ll prime;
-    ll power;
+    long long prime;
+    long long power;
 };
 
-std::vector<ll> findDivisor(ll number){
+std::vector<long long> findDivisor(long long number){
     std::vector<primeFactor> primeFactors;
-    ll quotient = number;
+    long long quotient = number;
     int numOfdivisor = 1;
-    for(ll i = 2; i*i <= quotient; ++i){
+    for(long long i = 2; i*i <= quotient; ++i){
         if(quotient%i == 0){
             primeFactor pf;
             pf.prime = i;
@@ -46,14 +43,14 @@ std::vector<ll> findDivisor(ll number){
     }
 
 
-    std::vector<ll> divisor(numOfdivisor);
+    std::vector<long long> divisor(numOfdivisor);
     divisor[0] = 1;
 
     int counter = 1;
     for(int i = 0; i < primeFactors.size(); ++i){
         int currentSize = counter;
         for(int j = 1; j <= primeFactors[i].power; ++j){
-            ll x = 1;
+            long long x = 1;
             for(int k = 0; k < j; ++k){
                 x *= primeFactors[i].prime;
             }
@@ -73,10 +70,10 @@ int main() {
     std::cin.tie(0);
     std::ios::sync_with_stdio(false);
     
-    ll number;
+    long long number;
     std::cin >> number;
 
-    std::vector<ll> divisor = findDivisor(number);
+    std::vector<long long> divisor = findDivisor(number);
 
     std::cout << "The number of divisor is " << divisor.size() << "\n";
     for(int i = 0; i < divisor.size(); ++i){
