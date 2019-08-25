@@ -1,13 +1,12 @@
 #include <iostream>
 #include <vector>
-#include <algorithm>
 
 struct primeFactor{
     long long prime;
     long long power;
 };
 
-std::vector<long long> primeFactorization(long long number){
+std::vector<primeFactor> primeFactorization(long long number){
     std::vector<primeFactor> primeFactors;
     long long quotient = number;
     for(long long i = 2; i*i <= quotient; ++i){
@@ -31,4 +30,21 @@ std::vector<long long> primeFactorization(long long number){
         pf.power = 1;
         primeFactors.push_back(pf);
     }
+
+    return primeFactors;
+}
+
+int main(){
+    std::cin.tie(0);
+    std::ios::sync_with_stdio(false);
+
+    long long number;
+    std::cin >> number;
+    std::vector primeFactors = primeFactorization(number);
+
+    std::cout << number << " = ";
+    for(int i = 0; i < primeFactors.size()-1; ++i){
+        std::cout << primeFactors[i].prime << "^" << primeFactors[i].power << " * ";
+    }
+    std::cout << primeFactors[primeFactors.size()-1].prime << "^" << primeFactors[primeFactors.size()-1].power << "\n";
 }
