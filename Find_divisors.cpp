@@ -6,6 +6,7 @@ This is a program that uses the "findDivisor" function to calculate and return d
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include <chrono>
 
 struct primeFactor{
     long long prime;
@@ -14,6 +15,15 @@ struct primeFactor{
 
 std::vector<primeFactor> primeFactorization(long long number){
     std::vector<primeFactor> primeFactors;
+    
+    if(number == 0){
+        primeFactor pf;
+        pf.prime = 0;
+        pf.power = 1;
+        primeFactors.push_back(pf);
+        return primeFactors;
+    }
+
     long long quotient = number;
     for(long long i = 2; i*i <= quotient; ++i){
         if(quotient%i == 0){
@@ -79,13 +89,15 @@ int main() {
     std::cin.tie(0);
     std::ios::sync_with_stdio(false);
     
-    long long number;
-    std::cin >> number;
-
-    std::vector<long long> divisor = findDivisor(number);
-
-    std::cout << "The number of divisor is " << divisor.size() << "\n";
-    for(int i = 0; i < divisor.size(); ++i){
-        std::cout << divisor[i] << "\n";
+    int sum = 0;
+    for(int x = 0; x < 100; ++x){
+        auto startTime = std::chrono::system_clock::now();
+        for(long long i = 1; i < 100000; ++i){
+            std::vector<long long> divisor = findDivisor(i);
+        }
+        auto endTime = std::chrono::system_clock::now();
+        auto msec = std::chrono::duration_cast<std::chrono::milliseconds>(endTime-startTime).count();
+        sum += msec;
     }
+    std::cout << "avr = " << sum/100 << " mSec Number of tests=100\n";
 }
