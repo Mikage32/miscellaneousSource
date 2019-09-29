@@ -10,14 +10,10 @@ ll gcd(ll m, ll n) {
 
 	while (m != 0) {
 		if (m < n) swap(m, n);
-
+		
 		if (m & 1) {
-			if (n & 1) {
-				m = (m - n) >> 1;
-			}
-			else {
-				n = n >> 1;
-			}
+			if (n & 1) m = (m - n) >> 1;
+			else n = n >> 1;
 		}
 		else {
 			if (n & 1) {
