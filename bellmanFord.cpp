@@ -40,6 +40,7 @@ pair<ll, bool> bellmanFord(node* nodes, int numOfNodes, edge* edges, int numOfEd
 
 			if (!nodes[v].distanceIsNotInf || nodes[v].distance > nodes[u].distance + edges[i].length) {
 				minusCycle = true;
+				break;
 			}
     }
 
