@@ -33,5 +33,8 @@ pll eea(ll a, ll b){
 }
 
 int main(){
-
+    int a, b;
+    cin >> a >> b;
+    pll ans = eea(a, b);
+    cout << ans << "\n";
 }
