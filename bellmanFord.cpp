@@ -34,14 +34,15 @@ pair<ll, bool> bellmanFord(node* nodes, int numOfNodes, edge* edges, int numOfEd
 		}
 	}
 
+	//閉路の確認
     for(int i = 0; i < numOfEdges; ++i){
         int u = edges[i].source;
-			int v = edges[i].distination;
+		int v = edges[i].distination;
 
-			if (!nodes[v].distanceIsNotInf || nodes[v].distance > nodes[u].distance + edges[i].length) {
-				minusCycle = true;
-				break;
-			}
+		if (!nodes[v].distanceIsNotInf || nodes[v].distance > nodes[u].distance + edges[i].length) {
+			minusCycle = true;
+			break;
+		}
     }
 
 	return pair<ll, bool>(nodes[endAt].distance, minusCycle);
