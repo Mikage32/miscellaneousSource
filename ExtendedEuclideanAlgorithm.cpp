@@ -6,9 +6,12 @@ typedef std::pair<long long, long long> pll;
 
 using namespace std;
 
-//ax + by = gcd(a, b) を満たすx, yの組合わせを返す
+//ax + by = gcd(a, b) を満たすx, yの組合わせを返す.
+//a = bq + r であるとき, b(qx+ y) + rx = gcd(a, b)であることを利用する.
 pll eea(ll a, ll b) {
 	int i = 1;
+
+	//q, rの組を, r = 0になるまで求め続ける.
 	vector<pll> qr;
 	qr.push_back(pll(0, b));
 	qr.push_back(pll(a / b, a % b));
@@ -17,6 +20,9 @@ pll eea(ll a, ll b) {
 		++i;
 	}
 
+	//Xi = Y(i+1)
+	//Yi = X(i-1) - Q(i-1)*Xi
+	//上記式を使ってX0, Y0を求める
 	ll x = 1;
 	ll y = 0;
 	while (i > 0) {
