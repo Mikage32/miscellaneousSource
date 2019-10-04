@@ -6,12 +6,13 @@ typedef std::pair<long long, long long> pll;
 
 using namespace std;
 
-//ax + by = gcd(a, b) を満たすx, yの組合わせを返す.
+//ax + by = gcd(a, b) を満たすx, yの組合わせを返す. Extended Euclidean Algorithm
 //a = bq + r であるとき, b(qx+ y) + rx = gcd(a, b)であることを利用する.
 pll eea(ll a, ll b) {
 	int i = 1;
 
 	//q, rの組を, r = 0になるまで求め続ける.
+	//Ri = BQ(i+1) + R(i+1) 即ち, R(i+1) = R(i-1) % Ri, Q(i+1) = R(i-1) / Ri である.
 	vector<pll> qr;
 	qr.push_back(pll(0, b));
 	qr.push_back(pll(a / b, a % b));
