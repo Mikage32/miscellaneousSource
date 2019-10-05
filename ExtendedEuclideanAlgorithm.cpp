@@ -5,6 +5,7 @@ using namespace std;
 
 //ax + by = gcd(a, b) を満たす整数x, yの組合わせを返す. Extended Euclidean Algorithm
 //a = bq + r であるとき, b(qx+ y) + rx = gcd(a, b)であることを利用する.
+//なんとなくtemplate使ってみたけど整数型じゃないとバグるし微妙
 template<typename T>
 pair<T, T> eea(T a, T b) {
 	int i = 1;
