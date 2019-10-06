@@ -5,8 +5,9 @@ typedef long long ll;
 
 using namespace std;
 
-ll gcd(ll m, ll n) {
-	ll g = 1;
+template<typename T>
+T gcd(T m, T n){
+	T g = 1;
 
 	while (m != 0) {
 		if (m < n) swap(m, n);
@@ -30,7 +31,8 @@ ll gcd(ll m, ll n) {
 	return g * n;
 }
 
-ll lcm(ll m, ll n) {
+template<typename T>
+T lcm(T m, T n) {
 	return (m * n) / gcd(m, n);
 }
 
