@@ -6,11 +6,8 @@ using namespace std;
 void warshallFloyd(int** graph, int n) {
 	for (int i = 0; i < n; ++i) {
 		for (int j = 0; j < n; ++j) {
-			if (graph[j][i] == -1) continue;
 			for (int k = 0; k < n; ++k) {
-				if (graph[i][k] == -1)continue;
-				else if (graph[j][k] == -1) graph[j][k] = graph[j][i] + graph[i][k];
-				else graph[j][k] = min(graph[j][k], graph[j][i] + graph[i][k]);
+				graph[j][k] = min(graph[j][k], graph[j][i] + graph[i][k]);
 			}
 		}
 	}
@@ -21,7 +18,11 @@ int main(){
     cin >> n;
     int** graph;
     graph = new int*[n];
-    for(int i = 0; i < n; ++i) graph[i] = new int[n];
+    for(int i = 0; i < n; ++i) {
+        graph[i] = new int[n];
+
+        for(int j = 0; j < n; ++j) graph[i][j] = 1e9;
+    }
 
     for(int vertical = 0; vertical < n; ++vertical){
         for(int horizontal = 0; horizontal < n; ++horizontal){
