@@ -39,6 +39,6 @@ pair<T, T> eea(T a, T b) {
 int main() {
 	long long a, b;
 	cin >> a >> b;
-	pair<T, T> ans = eea(a, b);
+	pair<long long, long long> ans = eea(a, b);
 	cout << ans.first << ", " << ans.second << "\n";
 }
