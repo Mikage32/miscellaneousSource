@@ -17,8 +17,8 @@ pair<T, T> eea(T a, T b) {
 		T i = x, j = y;
 		x = p;
 		y = q;
-		p = t*p - i;
-		q = t*q - j;
+		p = i - t*p;
+		q = j - t*q;
 	}
 
 	return pair<T, T>(x, y);
