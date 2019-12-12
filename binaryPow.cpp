@@ -2,18 +2,12 @@
 using namespace std;
 
 template<typename T>
-T binaryPow(T radix, T index, T mod) {
-	radix %= mod;
+T binaryPow(T radix, T index) {
 	T rtv = 1;
 	while (index > 0) {
-		if (index & 1) {
-			rtv *= radix;
-			rtv %= mod;
-		}
+		if (index & 1) rtv *= radix;
 
 		radix *= radix;
-		radix %= mod;
-
 		index = index >> 1;
 	}
 
@@ -21,8 +15,8 @@ T binaryPow(T radix, T index, T mod) {
 }
 
 int main() {
-	unsigned long long radix, index, mod;
-	cin >> radix >> index >> mod;
+	unsigned long long radix, index;
+	cin >> radix >> index;
 
-	cout << binaryPow(radix, index, mod) << "\n";
+	cout << binaryPow(radix, index) << "\n";
 }
