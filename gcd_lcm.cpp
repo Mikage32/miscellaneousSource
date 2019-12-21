@@ -6,7 +6,7 @@ typedef long long ll;
 using namespace std;
 
 template<typename T>
-T gcd(T m, T n){
+constexpr T gcd(T m, T n) noexcept {
 	T g = 1;
 
 	while (m != 0) {
@@ -32,7 +32,7 @@ T gcd(T m, T n){
 }
 
 template<typename T>
-T lcm(T m, T n) {
+constexpr T lcm(T m, T n) noexcept {
 	return (m * n) / gcd(m, n);
 }
 
