@@ -5,7 +5,7 @@
 namespace mp = boost::multiprecision;
 
 template<typename T>
-std::vector<std::pair<T, T>> primeFactorization(T number){
+constexpr std::vector<std::pair<T, T>> primeFactorization(T number) noexcept {
     std::vector<std::pair<T, T>> primeFactors;
     T quotient = number;
     for(T i = 2; i*i <= quotient; ++i){
