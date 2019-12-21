@@ -2,7 +2,7 @@
 using namespace std;
 
 template<typename T>
-T binaryPow_mod(T radix, T index, T mod) {
+constexpr T binaryPow_mod(T radix, T index, T mod) noexcept {
 	radix %= mod;
 	T rtv = 1;
 	while (index > 0) {
