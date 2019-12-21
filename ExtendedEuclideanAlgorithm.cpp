@@ -4,7 +4,7 @@
 //ax + by = gcd(a, b) を満たす整数x, yの組合わせを返す. 
 //Extended Euclidean Algorithm
 template<typename T>
-std::pair<T, T> eea(T a, T b) {
+constexpr std::pair<T, T> eea(T a, T b) noexcept {
 	T x = 1, y = 0, p = 0, q = 1;
 	while (b != 0) {
 		T s = a;
