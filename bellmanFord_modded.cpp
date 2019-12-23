@@ -1,24 +1,22 @@
 #include <iostream>
 
-typedef long long ll;
-
 using namespace std;
 
 struct edge {
 	int source;
 	int distination;
-	ll length;
+	long long length;
 };
 
 struct node {
-	ll distance;
+	long long distance;
 	int predecessor;
 	bool distanceIsNotInf;
 	bool distanceIsMinusInf;
 };
 
 //0始まりでフォーマットして入力すること.返値は距離と, 初期Nodeから終了Nodeまでの間のパスにに負の重みの閉路があればtrue.
-pair<ll, bool> bellmanFord(node* nodes, int numOfNodes, edge* edges, int numOfEdges, int startAt, int endAt) {
+pair<long long, bool> bellmanFord(node* nodes, int numOfNodes, edge* edges, int numOfEdges, int startAt, int endAt) noexcept {
 	bool inf = false;
 
 	//relax
@@ -48,7 +46,7 @@ pair<ll, bool> bellmanFord(node* nodes, int numOfNodes, edge* edges, int numOfEd
 		}
 	}
 
-	return pair<ll, bool>(nodes[endAt].distance, inf);
+	return pair<long long, bool>(nodes[endAt].distance, inf);
 }
 
 int main(){
@@ -64,7 +62,7 @@ int main(){
 
     int start, end;
     cin >> start >> end;
-    pair<ll, bool> t = bellmanFord(nodes, n, edges, m, start, end);
+    pair<long long, bool> t = bellmanFord(nodes, n, edges, m, start, end);
     if(t.second){
         cout << "This graph include minus cycle so that distance is minus infinite." << "\n";
     }else{
