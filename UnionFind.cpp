@@ -30,7 +30,7 @@ public:
     bool same(int a, int b){
         return root(a) == root(b);
     }
-}Uf;
+} Uf;
 
 int main(){
     int n, k;
