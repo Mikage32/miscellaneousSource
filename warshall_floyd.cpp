@@ -3,7 +3,7 @@
 using namespace std;
 
 //ワーシャルフロイド法で連続グラフの各ノード間の距離を求める.
-void warshallFloyd(int** graph, int n) {
+void warshallFloyd(int** graph, int n) noexcept {
 	for (int i = 0; i < n; ++i) {
 		for (int j = 0; j < n; ++j) {
 			for (int k = 0; k < n; ++k) {
