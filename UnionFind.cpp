@@ -3,33 +3,55 @@
 
 using namespace std;
 
-typedef class UnionFind{
+typedef class UnionFind {
 private:
-    int* par;
-    
-    int root(int a){
-        if(par[a] == a) return a;
-        else root(par[a]);
-    }
+	int n;
+	int* par;
+	int* hight;
+
+	int root(int a) {
+		while (par[a] != a) a = par[a];
+		return a;
+	}
 public:
-    UnionFind(int n){
-        par = new int[n];
-        for(int i = 0; i < n; ++i) par[i] = i;
-    }
-    ~UnionFind(){
-        delete[] par;
-    }
+	UnionFind(int num) {
+		n = num;
+		par = new int[n];
+		hight = new int[n];
+		for (int i = 0; i < n; ++i) {
+			par[i] = i;
+			hight[i] = 1;
+		}
+	}
+	~UnionFind() {
+		delete[] par;
+	}
 
-    void unite(int a, int b){
-        int ra = root(a);
-        int rb = root(b);
+	void unite(int a, int b) {
+		int ra = root(a);
+		int rb = root(b);
+		if (ra == rb) return;
+		
+		if (hight[ra] > hight[rb]) {
+			par[rb] = ra;
+		}
+		else if (hight[ra] < hight[rb]) {
+			par[ra] = rb;
+		}
+		else {
+			par[ra] = rb;
+			++hight[rb];
+		}
+	}
+	bool same(int a, int b) {
+		return root(a) == root(b);
+	}
 
-        if(ra == rb) return;
-        else par[rb] = ra;
-    }
-    bool same(int a, int b){
-        return root(a) == root(b);
-    }
+	int numofRoot() {
+		int counter = 0;
+		for (int i = 0; i < n; ++i) if (par[i] == i) ++counter;
+		return counter;
+	}
 } Uf;
 
 int main(){
