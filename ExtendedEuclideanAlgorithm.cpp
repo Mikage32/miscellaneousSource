@@ -22,6 +22,14 @@ constexpr std::pair<T, T> eea(T a, T b) noexcept {
 	return pair<T, T>(x, y);
 }
 
+template<typename T>
+constexpr T inv(T a, T mod) noexcept{
+	T invA = eea(a, mod).first;
+	if(invA < 0) invA += mod;
+
+	return invA;
+}
+
 int main() {
 	long long a, b;
 	std::cin >> a >> b;
