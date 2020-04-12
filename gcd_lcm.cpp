@@ -6,7 +6,7 @@ constexpr T gcd(T m, T n) noexcept {
 	T g = 1;
 
 	while (m != 0) {
-		if (m < n) swap(m, n);
+		if (m < n) std::swap(m, n);
 		
 		if (m & 1) {
 			if (n & 1) m = (m - n) >> 1;
