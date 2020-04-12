@@ -1,10 +1,6 @@
 #include <iostream>
 #include <utility>
 
-typedef long long ll;
-
-using namespace std;
-
 template<typename T>
 constexpr T gcd(T m, T n) noexcept {
 	T g = 1;
@@ -37,10 +33,10 @@ constexpr T lcm(T m, T n) noexcept {
 }
 
 int main(){
-    ll x, y;
-    cin >> x >> y;
-    cout << "gcd(" << x << y << ") = " << gcd(x, y) << "\n";
-    cout << "lcm(" << x << y << ") = " << lcm(x, y) << "\n";
+    long long x, y;
+    std::cin >> x >> y;
+    std::cout << "gcd(" << x << y << ") = " << gcd(x, y) << "\n";
+    std::cout << "lcm(" << x << y << ") = " << lcm(x, y) << "\n";
 
     return 0;
 }
