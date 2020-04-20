@@ -2,7 +2,7 @@
 #include <utility>
 
 template<typename T>
-constexpr T gcd(T m, T n) noexcept {
+constexpr T _gcd(T m, T n) noexcept {
 	T g = 1;
 
 	while (m != 0) {
@@ -28,15 +28,15 @@ constexpr T gcd(T m, T n) noexcept {
 }
 
 template<typename T>
-constexpr T lcm(T m, T n) noexcept {
+constexpr T _lcm(T m, T n) noexcept {
 	return (m * n) / gcd(m, n);
 }
 
 int main(){
     long long x, y;
     std::cin >> x >> y;
-    std::cout << "gcd(" << x << y << ") = " << gcd(x, y) << "\n";
-    std::cout << "lcm(" << x << y << ") = " << lcm(x, y) << "\n";
+    std::cout << "gcd(" << x << y << ") = " << _gcd(x, y) << "\n";
+    std::cout << "lcm(" << x << y << ") = " << _lcm(x, y) << "\n";
 
     return 0;
 }
