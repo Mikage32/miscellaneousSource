@@ -10,7 +10,7 @@ using namespace std;
 struct node {
 	ll distance;
 	int pre;
-	vector<int> conected;
+	vector<pil> conected;
 };
  
 void dikstra(node* nodes, int n) {
@@ -23,11 +23,11 @@ void dikstra(node* nodes, int n) {
 		if (t.first > nodes[t.second].distance) continue;
  
 		rep(i, nodes[t.second].conected.size()) {
-			if (nodes[nodes[t.second].conected[i]].distance > nodes[t.second].distance + 1) {
-				nodes[nodes[t.second].conected[i]].distance = nodes[t.second].distance + 1;
-				nodes[nodes[t.second].conected[i]].pre = t.second;
+			if (nodes[nodes[t.second].conected[i].first].distance > nodes[t.second].distance + nodes[t.second].conected[i].second) {
+				nodes[nodes[t.second].conected[i].first].distance = nodes[t.second].distance + nodes[t.second].conected[i].second;
+				nodes[nodes[t.second].conected[i].first].pre = t.second;
  
-				que.push(pli(nodes[nodes[t.second].conected[i]].distance, nodes[t.second].conected[i]));
+				que.push(pli(nodes[nodes[t.second].conected[i].first].distance, nodes[t.second].conected[i].first));
 			}
 		}
 	}
