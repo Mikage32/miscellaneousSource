@@ -43,7 +43,7 @@ int main(){
 	cin >> h >> w;
 
 	string* s = new string[h];
-	rep(i, h) cin >> s[i];
+	rep(i, h) std::cin >> s[i];
 
 	int m;
 	cin >> m;
