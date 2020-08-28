@@ -62,7 +62,7 @@ public:
 
 	T get(int l, int r) {
 		if (l > r || l < 0 || r >= treeSize) {
-			throw std::out_of_range("Both l and r must be in [0, treeSize) and l must be greater than r");
+			throw std::out_of_range("Both l and r must be in [0, treeSize) and l must be smaller than r");
 		}
 
 		return query(l, r, 0, treeSize - 1, 0);
