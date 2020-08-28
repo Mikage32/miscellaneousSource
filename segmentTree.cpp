@@ -1,7 +1,7 @@
 template <typename T>
 class segmentTree {
 private:
-	T* tree;
+	std::unique_ptr<T[]> tree;
 	T paddingObj;
 	std::function<T(T, T)> segfunc;
 	int treeSize;
@@ -11,7 +11,7 @@ private:
 		for (int i = treeHeight - 1; i >= 1; --i) {
 			for (int counter = 0; counter < (1 << (i - 1)); ++counter) {
 				int index = (1 << (i - 1)) - 1 + counter;
-				tree[(1 << (i - 1)) - 1 + counter] = segfunc(tree[index*2+1], tree[index*2+2]);
+				tree[(1 << (i - 1)) - 1 + counter] = segfunc(tree[index * 2 + 1], tree[index * 2 + 2]);
 			}
 		}
 	}
@@ -43,15 +43,11 @@ public:
 		treeHeight = 1;
 		while ((1 << (treeHeight - 1)) < arraySize) ++treeHeight;
 		treeSize = 1 << (treeHeight - 1);
-		tree = new T[treeSize * 2 - 1];
+		tree = std::make_unique<T[]>(treeSize * 2 - 1);
 		for (int i = 0; i < arraySize; ++i) tree[(treeSize - 1) + i] = originalArray[i];
 		for (int i = arraySize; i < treeSize; ++i) tree[(treeSize - 1) + i] = paddingObj;
 
 		initialize();
-	}
-
-	~segmentTree() {
-		delete[] tree;
 	}
 
 	void update(int index, T x) {
