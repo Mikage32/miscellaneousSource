@@ -3,7 +3,7 @@
 
 using namespace std;
 
-typedef class UnionFind {
+class UnionFind {
 private:
 	int n;
 	int* par;
@@ -52,12 +52,14 @@ public:
 		for (int i = 0; i < n; ++i) if (par[i] == i) ++counter;
 		return counter;
 	}
-} Uf;
+};
+
+using UF = UnionFind;
 
 int main(){
     int n, k;
     cin >> n >> k;
-    Uf tree(n);
+    UF tree(n);
     for(int i = 0; i < k; ++i){
         int x, a, b;
         cin >> x >> a >> b;

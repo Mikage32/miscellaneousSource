@@ -20,6 +20,11 @@ constexpr T binaryPow_mod(T radix, T index, T mod) noexcept {
 	return rtv;
 }
 
+template<typename T>
+constexpr T invA_mod(T a, T mod) {
+	return binaryPow_mod(a, mod - 2, mod);
+}
+
 int main() {
 	unsigned long long radix, index, mod;
 	cin >> radix >> index >> mod;

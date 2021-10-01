@@ -1,16 +1,12 @@
 #include <iostream>
 #include <utility>
 
-typedef long long ll;
-
-using namespace std;
-
 template<typename T>
-constexpr T gcd(T m, T n) noexcept {
+constexpr T _gcd(T m, T n) noexcept {
 	T g = 1;
 
 	while (m != 0) {
-		if (m < n) swap(m, n);
+		if (m < n) std::swap(m, n);
 		
 		if (m & 1) {
 			if (n & 1) m = (m - n) >> 1;
@@ -32,15 +28,15 @@ constexpr T gcd(T m, T n) noexcept {
 }
 
 template<typename T>
-constexpr T lcm(T m, T n) noexcept {
+constexpr T _lcm(T m, T n) noexcept {
 	return (m * n) / gcd(m, n);
 }
 
 int main(){
-    ll x, y;
-    cin >> x >> y;
-    cout << "gcd(" << x << y << ") = " << gcd(x, y) << "\n";
-    cout << "lcm(" << x << y << ") = " << lcm(x, y) << "\n";
+    long long x, y;
+    std::cin >> x >> y;
+    std::cout << "gcd(" << x << y << ") = " << _gcd(x, y) << "\n";
+    std::cout << "lcm(" << x << y << ") = " << _lcm(x, y) << "\n";
 
     return 0;
 }
