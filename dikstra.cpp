@@ -13,26 +13,27 @@ const long long INF = 1000000000000000001;
 using namespace std;
 
 struct node {
-	ll distance;
-	int pre;
-	vector<pil> conected;
+	long long distance;	//距離
+	int pre;		//親ノード
+	std::vector<std::pair<int, long long>> conected;	//接続先 pair<int, long long>
 };
  
 void dikstra(node* nodes, int n) {
-	priority_queue<pli, vector<pli>, greater<pli>> que;
-	rep(i, n) que.push(pli(nodes[i].distance, i));
+	std::priority_queue<std::pair<long long, int>, std::vector<std::pair<long long, int>>, std::greater<std::pair<long long, int>>> que;
+	rep(i, n) que.push(std::pair<long long, int>(nodes[i].distance, i));
  
 	while (!que.empty()) {
-		pli t = que.top();
+		std::pair<long long, int> pre_node = que.top();
 		que.pop();
-		if (t.first > nodes[t.second].distance) continue;
+		auto current_node = &nodes[pre_node.second];
+		if (pre_node.first > current_node->distance) continue;
+
+		for(auto i: current_node->conected){
+			if (nodes[i.first].distance > current_node->distance + i.second) {
+				nodes[i.first].distance = current_node->distance + i.second;
+				nodes[i.first].pre = pre_node.second;
  
-		rep(i, nodes[t.second].conected.size()) {
-			if (nodes[nodes[t.second].conected[i].first].distance > nodes[t.second].distance + nodes[t.second].conected[i].second) {
-				nodes[nodes[t.second].conected[i].first].distance = nodes[t.second].distance + nodes[t.second].conected[i].second;
-				nodes[nodes[t.second].conected[i].first].pre = t.second;
- 
-				que.push(pli(nodes[nodes[t.second].conected[i].first].distance, nodes[t.second].conected[i].first));
+				que.push(std::pair<long long, int>(nodes[i.first].distance, i.first));
 			}
 		}
 	}
